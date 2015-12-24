@@ -5,20 +5,21 @@ require_once 'library/loginClass.php';
 
 class ninpcontrooler extends loginclass {
     
-    
+
     //Load函数
 
     protected function load($folder = NULL, $file = NULL) {
 
         if ($folder == NULL || $file == NULL)
-            exit("null loader");
+            exit("null loader Class $folder / $file");
 
         $filePath = $folder . "/" . $file . "Class.php";
 
         $fileName = $file . "class";
+//
 
         if (!self::check_request_file($filePath))
-            exit("null loader");
+            exit("null loader  Class $folder / $file ");
 
         require_once $filePath;
 
@@ -27,8 +28,9 @@ class ninpcontrooler extends loginclass {
     
     //DB 加载
     protected function db_init() {
-
-        $DB = self::load('library', 'DB');
+        
+             
+        $DB = self::load('library', 'dbi');
         $DB->db_con(DB_HOST,DB_USERNAME, DB_PASSWORD, DB_DATABASE);
         
         return $DB;
@@ -41,12 +43,13 @@ class ninpcontrooler extends loginclass {
        if(class_exists ('Redis')){
         
         $redis = new Redis();
-        $redis->connect('127.0.0.1', 6379);
+        $redis->connect(REDIS_HOST, REDIS_PORT);
         
         return $redis;
        }  else {
        
         echo "No Redis Class";   
+        
        }
         
     }
@@ -61,6 +64,7 @@ class ninpcontrooler extends loginclass {
 
         return file_exists($file_name);
     }
+    
 
     
 

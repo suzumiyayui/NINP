@@ -146,11 +146,11 @@ class baseClass {
         
         if($str){
             
-          return $clean ? self::xxs_clean($_POST[$str]) : $_POST[$str];
+          return $clean ? $this->xss_clean($_POST[$str]) : $_POST[$str];
             
         }else{
             
-           return $clean ? self::xxs_clean($_POST) : $_POST;  
+           return $clean ? $this->xss_clean($_POST) : $_POST;  
             
         }
         

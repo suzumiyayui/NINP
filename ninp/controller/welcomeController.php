@@ -1,46 +1,57 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 class welcomecontroller extends ninpcontrooler {
 
-    var $DB;
-    var $redis;
+    private $Model;
 
     function __construct() {
 
         parent::__construct();
-
-        $this->DB = self::db_init();
         
-       // $this->redis = self::redis_init();
+        self::setCookieKey("ADBCDE");
+        
+        if(!$this->Model)$this->Model = self::load('model','data'); //加载模板
+        
     }
     
 
     public function index() {
+              
+        
+        $post = self::s_post();
+        
+        
+        $get  = self::s_get('uid');
+        
 
+                 
+        $this->Model->s_data();
+       
         
-        $get= self::s_get();
         
-        print_r($get);
+       
+    }
+
+    
+    
+    
+    public function set_serCookie($param) {
         
+   
+        $array = array("uid"=>"25");
         
-//        $sql = "select * from food";
-//
-//        $info = $this->DB->db_all($sql);
-//
-//        print_r($info);
+        self::setServerSession('login',$array);
+         
+        
     }
     
     
-    
-    
-    public function test($param) {
+    public function get_serCookie($param){
         
+        
+        $code = self::getServerSession('login');
+        
+        print_r($code);
         
         
     }

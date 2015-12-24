@@ -16,14 +16,20 @@ class urlClass {
 
         require_once 'system/ninpController.php';
 
-
         $controller = self::request_controller();
 
         $method = self::request_method();
 
         $parameter = self::request_parameter();
 
-        $controller->$method($parameter);
+        if (method_exists($controller, $method)) {
+
+            $controller->$method($parameter);
+     
+            } else {
+          
+             exit("Ninp: function '$method'  No found");
+        }
     }
 
     function request_controller() {
@@ -39,7 +45,7 @@ class urlClass {
         $controllerPath = 'controller/' . $url[1] . "Controller.php";
 
         if (!self::check_request_file($controllerPath))
-            exit("Controller Error");
+            exit("Ninp: Controller Error");
 
         require_once $controllerPath;
 
@@ -78,14 +84,13 @@ class urlClass {
             if (isset($url[$num])) {
 
                 $parameter ? $parameter = $parameter . "," . $url[$num] : $parameter = $parameter . $url[$num];
-                
             } else {
 
                 break;
             }
         }
 
-        
+
 
         return $parameter;
     }
