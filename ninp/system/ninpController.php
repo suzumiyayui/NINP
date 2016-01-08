@@ -20,8 +20,9 @@ class ninpcontrooler extends loginclass {
 
         if (!self::check_request_file($filePath))
             exit("null loader  Class $folder / $file ");
-
+        
         require_once $filePath;
+        
 
         return new $fileName;
     }

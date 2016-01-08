@@ -3,7 +3,8 @@
 class hicontroller extends ninpcontrooler {
 	
 
-	
+    var $HtmlCache;
+            
 	
 	function you(){
 		
@@ -17,6 +18,18 @@ class hicontroller extends ninpcontrooler {
 		
 		
 	}
+        
+        
+        function htmlcache(){
+            
+            
+            $this->HtmlCache = self::load('library','htmlcache');
+            
+            
+            $this->HtmlCache->init();
+            
+
+        }
 	
 	
 	

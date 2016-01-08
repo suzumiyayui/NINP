@@ -18,15 +18,15 @@ class welcomecontroller extends ninpcontrooler {
     public function index() {
               
         
-        $post = self::s_post();
-        
-        
-        $get  = self::s_get('uid');
-        
-
-                 
-        $this->Model->s_data();
-       
+//        $post = self::s_post();
+//        
+//        
+//        $get  = self::s_get('uid');
+//        
+//
+//                 
+//        $this->Model->s_data();
+//       
         
         
        
